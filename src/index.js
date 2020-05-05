@@ -5,12 +5,18 @@ const app = express();
 const server = http.createServer(app);
 const socketio = require('socket.io');
 const Filter = require('bad-words');
+const bodyParser = require('body-parser');
 const { generateMessage , generateLocationMessage } = require('./utils/messages');
 const { addUser, getUser, getUsersInRoom, removeUser } = require('./utils/users')
 const port = process.env.PORT || 3000;
 const io = socketio(server);
 
 app.use(express.static(path.join(__dirname, '../public')));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json());
 
 io.on('connection', (socket)=> {
   socket.on('join', (options, callback)=> {
