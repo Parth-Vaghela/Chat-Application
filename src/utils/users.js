@@ -13,7 +13,7 @@ const addUser = ({ id, username, room }) => {
   const existingUser = users.find((user) => {
     return user.room === room && user.username === username
   })
-  //validate Username
+  //for validate Username
   if(existingUser){
     return {
       error : 'Username is in use'
@@ -25,6 +25,7 @@ const addUser = ({ id, username, room }) => {
   return { user }
 }
 
+//remove a user by socket.id 
 const removeUser = (id) => {
   const index = users.findIndex((user) => {
     return user.id === id
@@ -34,10 +35,12 @@ const removeUser = (id) => {
   }
 }
 
+//get user by socket.id
 const getUser = (id) => {
   return users.find((user)=> user.id === id )
 }
 
+//get a data which users are avilable in room 
 const getUsersInRoom = (room) => {
   room = room.trim().toLowerCase()
   return users.filter((user) => user.room === room)

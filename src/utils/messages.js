@@ -1,3 +1,4 @@
+//for a message
 const generateMessage = (username, text) => {
   return {
     username,
@@ -6,6 +7,7 @@ const generateMessage = (username, text) => {
   }
 }
 
+//for generating locatin message 
 const generateLocationMessage = (username, url) => {
   return {
     username,
